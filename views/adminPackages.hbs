@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Bookings</title>
+ <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/{{cssFile}}">
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 200px;
+            padding: 25px;
+            height: 100%;
+            position: fixed;
+            overflow: auto;
+            transition: transform 0.3s ease;
+            background-color: rgb(230, 230, 230);
+        }
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        .sidebar h2 {
+            color: rgb(9, 9, 9);
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        h1 {
+            color: #070707;
+            text-align: center;
+        }
+        table {
+            margin-top: 5%;
+            width: 100%;
+            border-collapse: collapse;
+            margin-right: 10%;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color:  rgb(43, 152, 179);
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .sidebar-toggle {
+            display: none;
+            border: none;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        @media screen and (max-width: 768px) {
+           
+            .content {
+                margin-top: 20%;
+                margin-left: 0;
+                padding: 10px;
+            }
+            .sidebar-toggle {
+                display: block;
+            }
+            .close-icon {
+                display: block;
+                margin-left: 90%;
+                color: rgb(255, 255, 255);
+                cursor: pointer;
+            }
+            table {
+            
+            width: 50%;
+            border-collapse: collapse;
+            margin-right: 10%;
+        }
+        }
+        .button {
+        position: fixed;
+        top: 10px; /* Adjust as needed */
+        right: 10px; /* Adjust as needed */
+        background-color: #539bad; /* Change the color as desired */
+        color: #fff; /* Text color */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+    .button:hover {
+        background-color: #76a3c1; /* Change the color as desired */
+    }
+        
+        
+       
+    </style>
+</head>
+<body>
+    <h1>Available Packages</h1>
+        <a href="/adminAddPackage" class="button">Add Packages</a>    
+    {{#if packages.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                 <th>Region</th>
+                <th>Package Name</th>
+                <th>Price</th>
+                <th>People Count</th>
+                <th>Description</th>
+                <th>Duration</th>
+                {{!-- <th>Image Path</th> --}}
+                <th>Actions</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            {{#each packages}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.region}}</td>
+                <td>{{this.package_name}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.people_count}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.days}}</td>
+                {{!-- <td>{{this.image_path}}</td> --}}
+                <td class="actions">
+               <button class="edit" onclick="editPackage('{{this.id}}')"><i class="ri-edit-2-fill"></i></button>
+<button class="delete" onclick="deletePackage('{{this.id}}')"><i class="ri-delete-bin-6-fill"></i></button>
+            </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p>No packages found.</p>
+    {{/if}}
+    <script>
+        function deletePackage(id) {
+        if (confirm('Are you sure you want to delete this package?')) {
+            fetch(`/auth/packages/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    location.reload(); // Reload the page to reflect the changes
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+    
+   function editPackage(id) {
+        window.location.href = `/editPackage/${id}`;
+    }
+    </script>
+</body>
+</html>

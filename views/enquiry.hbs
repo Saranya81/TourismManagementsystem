@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+    body {
+     margin: 0;
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-image: url(/userImages/tokyo-cityscape-night-japan.jpg);
+        background-color: #96dced;
+    background-blend-mode: multiply;
+    background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center;
+     font-family: 'Lexend', sans-serif;
+}
+
+#Form {
+  display: flex; 
+  /* font-size: 16px; */
+    justify-content: space-between;
+    align-items: left; 
+    flex-wrap: wrap;
+    position: fixed;
+    left:50%;
+    top:50%;
+    /* margin-bottom: 90%;  */
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    border: 2px solid white;
+    background-color: hsla(120, 2%, 11%, 0.1);
+    padding: 4rem 3rem 3.5rem;
+    max-width: 400%;
+    width: 900px; /* Limit the form's width to 80% of its containing element */
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
+  backdrop-filter: blur(8px);
+}
+.Form .half1, .half2 {
+    flex: 1; /* Each half takes up equal space */
+    padding: 0 10px; /* Add some padding */
+    box-sizing: border-box; /* Include padding in element's total width */
+}
+.title {
+  width: 100%;
+    text-align: center;
+    font-size: 30px;
+    
+    z-index: 999;
+
+    margin-top: 0;
+     color: #f8f7f7;
+    
+  }
+
+#Form label,
+#Form input,
+#Form select,
+#Form textarea {
+    display: block;
+    margin-bottom: 10px;
+    color: #f8f7f7;
+}
+
+#Form input,
+#Form select,
+#Form textarea {
+    width: 100%;
+    padding-bottom: 5px; /* Add padding to the bottom only */
+    color: #ffffff;
+    background-color: transparent; /* Make the background transparent */
+    border: none;
+    border-bottom: 2px solid #f1eded;
+    outline: none;
+}
+
+
+#Form button {
+    background-color: #fafbfd;
+    color: #0c0c0c;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   margin-top: 2%;
+   
+    font-family: 'Lexend', sans-serif;
+    width: 100%;
+
+}
+.Form .close-icon{
+  color: #080808;
+  margin-left: 95%;
+}
+#Form button:hover {
+    background-color: #dedfe1;
+}
+select option {
+    color: black;
+  
+}
+.error{
+  color:red;
+  
+  text-align: center;
+}
+.good{
+    
+    color: rgb(5, 175, 56);
+    text-align: center;
+    margin: auto;
+}
+ .icon-left {
+    font-size: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+    cursor: pointer;
+}
+.back-to-home {
+    position: fixed;
+    top: 50px; /* Adjust as needed */
+    left: 5px; /* Adjust as needed */
+    display: none; 
+    /* Initially hide the text */
+}
+
+.icon-container:hover .back-to-home {
+            display: inline-block; /* Show the text when icon is hovered */
+        }
+
+    
+
+/* #Form input:not(:placeholder-shown) + label,
+#Form textarea:not(:placeholder-shown) + label {
+    top: -12px;
+    font-size: var(--small-font-size);
+}
+
+#Form input:focus + label,
+#Form textarea:focus + label {
+    top: -12px;
+    font-size: var(--small-font-size);
+}
+.discover:hover {
+    background-color: rgb(78, 187, 217); 
+   
+} */
+/*enquiry form*/
+@media screen and (max-width: 600px) {
+        body {
+            height: 1200px;
+            align-items: flex-start;
+        }
+        #Form {
+          align-items: center;
+          
+          bottom: 0;
+          margin-right: 3%;
+            display: block;
+            width: 90%;
+            height: auto;
+            padding: 1rem;
+            position: relative;
+            margin-bottom: 0;
+        }
+        #Form textarea#message {
+            width: 100%;
+            height: 70px;
+        }
+        .title {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+
+
+
+@media screen and (min-width: 601px) and (max-width: 900px) {
+
+  #Form {
+      width: 80%;
+      max-width: 100%;
+      padding: 1rem;
+     
+    
+  }
+  #Form textarea#message {
+    width: 70%; /* Set the width to 100% */
+    height: 10px; /* Set the height to your desired value */
+}
+
+}
+.title{
+  top:60%;
+}
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 999; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5); 
+}
+.modal p{
+  color: #000000;
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10px; 
+  justify-content: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  /* font-weight: bold; */
+  margin-left: 90%;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+      <div class="icon-container">
+            <a href="javascript:history.back()"><i class="ri-arrow-left-line icon-left"></i></a>
+            <span class="back-to-home">back</span>
+        </div>
+              
+      <form action="/auth/enquiry" method="POST"  id="Form" class="Form" style="font-size: 16px;">
+                  
+              <p class="title">Enquiry Now<p>
+                {{#if msg}}
+        <p class="{{msg_type}}">{{msg}}</p>
+        {{/if}}
+        <i class="ri-close-fill close-icon" id="close-Form"></i>
+         
+        <div class="half1">
+          <label for="packageName">Package Name:</label>
+          <input type="text" id="packageName" name="packageName">
+          <!-- <select id="packageName" name="packageName">
+            <option value="resort">Resort</option>
+            <option value="guesthouse">Guesthouse</option>
+            <option value="guesthouse" selected>Not required</option>
+        </select> -->
+          <label for="numPeople">Number of People:</label>
+          <input type="number" id="numPeople" name="numPeople">
+          
+          <label for="startDate"  style="font-family: 'Lexend', sans-serif;">Start Date:</label>
+            <input type="date" id="startDate" name="startDate">
+            <label for="endDate"  style="font-family: 'Lexend', sans-serif;">End Date:</label>
+            <input type="date" id="endDate" name="endDate">
+          <label for="accommodation">Accommodation:</label>
+          <select id="accommodation" name="accommodation" style="font-family: 'Lexend', sans-serif;">
+              <option value="resort">Resort</option>
+              <option value="guesthouse">Guesthouse</option>
+              <option value="guesthouse" selected>Not required</option>
+          </select>
+          <label for="travelFacilities"  >Travel Facilities:</label>
+          <select id="travelFacilities" name="travelFacilities" style="font-family: 'Lexend', sans-serif;">
+              <option value="bus">Bus</option>
+              <option value="train">Train</option>
+              <option value="flight">Flight</option>
+              <option value="car" selected>Not Required</option>
+          </select>
+        </div>
+        <div class="half2">
+         
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" required>
+          <label for="message">Additional Message:</label>
+          <textarea id="message" name="message" style="width: 100%; height: 90px;"></textarea>
+          <button type="submit">Submit</button>
+          </div>
+          
+      </form> 
+      {{!-- <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Your response has been successfully submitted. Our team will contact you soon. If you have any queries, please feel free to contact us.</p>
+        </div>
+      </div> --}}
+      
+
+
+
+    
+</body>
+</html>
+<script>
+  function setMinStartDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+
+    var todayFormatted = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('startDate').min = todayFormatted;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    setMinStartDate();
+
+    document.getElementById('startDate').addEventListener('change', function() {
+        setMinStartDate();
+    });
+});
+
+</script>

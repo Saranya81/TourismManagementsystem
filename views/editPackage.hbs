@@ -1,0 +1,337 @@
+{{!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Package</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Package</h2>
+    <form action="/auth/updatePackage/{{packageId}}" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="package_name">Package Name:</label>
+        <input type="text" id="package_name" name="package_name" required>
+      </div>
+      <div class="form-group">
+        <label for="region">Region:</label>
+        <input type="text" id="region" name="region" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="duration">Duration (nights/days):</label>
+        <input type="text" id="duration" name="duration" placeholder="3 nights 4 days" required>
+      </div>
+      <div class="form-group">
+        <label for="people_count">People Count:</label>
+        <input type="number" id="people_count" name="people_count" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+      </div>
+      <div class="form-group">
+        <label for="area_image">Area Image:</label>
+       
+        <input type="file" id="area_image" name="area_image" accept="image/*" >
+      </div>
+            <img id="area_image_preview" src="" alt="Area Image Preview" style="max-width: 100%;">
+
+      <button type="submit">Update Package</button>
+    </form>
+  </div>
+  <script>
+     const packageId = '{{packageId}}';
+
+    // Function to fetch package details based on the ID
+    function fetchPackageDetails(id) {
+        fetch(`/auth/packages/${id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Populate form fields with package details
+            document.getElementById('package_name').value = data.package_name;
+            document.getElementById('region').value = data.region;
+            document.getElementById('description').value = data.description;
+            document.getElementById('duration').value = data.days;
+            document.getElementById('people_count').value = data.people_count;
+            document.getElementById('price').value = data.price;
+             document.getElementById('area_image_preview').src = data.image_path;
+            
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+
+function updateImagePreview(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            document.getElementById('area_image_preview').src = e.target.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Call the fetchPackageDetails function with the package ID
+    if (packageId) {
+        fetchPackageDetails(packageId);
+    } else {
+        console.error('No package ID found');
+    }
+
+    // Add event listener to the file input
+    document.getElementById('area_image').addEventListener('change', updateImagePreview);
+    // Call the fetchPackageDetails function with the package ID
+    
+  </script>
+</body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Package</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 95%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    img {
+      max-width: 100%;
+      margin-top: 10px;
+    }
+    
+ .error {
+      color: red;
+      text-align: center;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Package</h2>
+      {{#if msg}}
+      <p class="{{msg_type}}">{{msg}}</p>
+    {{/if}}
+    <form action="/auth/updatePackage/{{packageId}}" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="package_name">Package Name:</label>
+        <input type="text" id="package_name" name="package_name" value="{{package.package_name}}" required>
+      </div>
+      <div class="form-group">
+        <label for="region">Region:</label>
+        <input type="text" id="region" name="region" value="{{package.region}}" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required>{{package.description}}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="duration">Duration (nights/days):</label>
+        <input type="text" id="duration" name="duration" value="{{package.duration}}" placeholder="3 nights 4 days" required>
+      </div>
+      <div class="form-group">
+        <label for="people_count">People Count:</label>
+        <input type="number" id="people_count" name="people_count" value="{{package.people_count}}" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="{{package.price}}" required>
+      </div>
+      <div class="form-group">
+        <label for="area_image">Area Image:</label>
+        <input type="file" id="area_image" name="area_image" accept="image/*">
+      <input type="hidden" id="existing_image_path" name="existing_image_path" value="{{package.image_path}}">
+        <p>This is the image already there</p>
+        <img id="area_image_preview" src="{{package.image_path}}" alt="Area Image Preview">
+      </div>
+      <button type="submit">Update Package</button>
+    </form>
+  </div>
+  <script>
+    const packageId = '{{packageId}}';
+
+    // Function to fetch package details based on the ID
+    function fetchPackageDetails(id) {
+        fetch(`/auth/packages/${id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+    // Populate form fields with package details
+    document.getElementById('package_name').value = data.package_name;
+    document.getElementById('region').value = data.region;
+    document.getElementById('description').value = data.description;
+    document.getElementById('duration').value = data.days;
+    document.getElementById('people_count').value = data.people_count;
+    document.getElementById('price').value = data.price;
+
+    // Check if the image path starts with a slash
+    const imagePath = data.image_path.startsWith('/') ? data.image_path : `/${data.image_path}`;
+    
+    document.getElementById('area_image_preview').src = imagePath;
+    document.getElementById('existing_image_path').value = imagePath;
+})
+
+        .catch(error => console.error('Error:', error));
+    }
+
+    function updateImagePreview(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            document.getElementById('area_image_preview').src = e.target.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Call the fetchPackageDetails function with the package ID
+    if (packageId) {
+        fetchPackageDetails(packageId);
+    } else {
+        console.error('No package ID found');
+    }
+
+    // Add event listener to the file input
+    document.getElementById('area_image').addEventListener('change', updateImagePreview);
+  </script>
+</body>
+</html>

@@ -1,0 +1,560 @@
+{{!-- 
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Package Management</title>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+            body {
+                font-family: 'Lexend', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+            }
+    
+            table {
+               
+                width: 80%;
+                margin: 20px auto;
+                background-color: #fff;
+                border-collapse: collapse;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);   
+                
+            }
+    
+            th, td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                text-align: center;  
+            }
+    
+            th {
+                background-color: #f2f2f2;
+            }
+    
+            .actions button {
+                padding: 8px 16px;
+                margin-right: 5px;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+                font-size: 20px;
+            }
+    
+            .actions button.edit {
+                color: #085db7;
+            }
+    
+            .actions button.delete {
+               color: #dc3545;
+            }
+    
+            .packages {
+               
+                background-color: #fff; 
+            }
+    
+            .packages.active {
+                display: table-row;
+            }
+    
+            .north-heading {
+                cursor: pointer;
+            }
+           .button {
+        position: fixed;
+        top: 10px; /* Adjust as needed */
+        right: 10px; /* Adjust as needed */
+        background-color: #539bad; /* Change the color as desired */
+        color: #fff; /* Text color */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+    .button:hover {
+        background-color: #76a3c1; /* Change the color as desired */
+    }
+    
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center; margin-bottom: 4%;">Packages List</h1>
+    <a href="/adminAddPackage" class="button">Add Packages</a>    
+    <div class="dropdown">
+            <div class="dropdown-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>People count</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="north-heading">
+                            <td colspan="6" style="text-align:center;color: #ed1717;font-size :20px;">North Packages
+                          
+                       
+                        <tr class="packages north-packages">
+                            <td>Kashmir</td>
+                            <td>Explore the lush valleys, serene lakes, and majestic mountains.</td>
+                            <td>3</td>
+                            <td>3Days 4 Nights</td>
+                            <td>Rs.30,000</td>
+                            <td class="actions">
+                                <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="packages north-packages">
+                            <td>Agra</td>
+                            <td>Discover the Taj Mahal, Fatehpur Sikri's stunning Mughal architecture, Lord Krishna's birthplace.</td>
+                            <td>3</td>
+                            <td>3 Nights 4 Days</td>
+                            <td>Rs.35,000</td>
+                            <td class="actions">
+                                <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="packages north-packages">
+                            <td>Delhi</td>
+                            <td>Explore Delhi, the Red Fort to bustling markets such as Chandni Chowk.</td>
+                            <td>3</td>
+                            <td>3 Nights 4 Days</td>
+                            <td>Rs.18,000</td>
+                            <td class="actions">
+                               <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="packages north-packages">
+                            <td>Shimla</td>
+                            <td>Experience Shimla,Kufri's snow-capped peaks and Chail's serene surroundings.</td>
+                            <td>4</td>
+                            <td>3 Nights 4 Days</td>
+                            <td>Rs.40,000</td>
+                            <td class="actions">
+                               <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="packages north-packages">
+                            <td>Kullu and Manali</td>
+                            <td>Enjoy adventure in Kullu and Manali,Solang Valley and beauty of Rohtang Pass.</td>
+                            <td>2</td>
+                            <td>3 Nights 4 Days</td>
+                            <td>Rs.25,000</td>
+                            <td class="actions">
+                               <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="packages north-packages">
+                            <td>Ladakh</td>
+                            <td>Discover Ladakh,Pangong Lake, Nubra Valley, and Leh Palace.</td>
+                            <td>2</td>
+                            <td>3 Nights 4 Days</td>
+                            <td>Rs.30,000</td>
+                            <td class="actions">
+                               <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                            </td>
+                        </tr>
+                         </tr>
+                   
+                   <!-- Additional package rows -->
+                        <tr class="south-heading" style="cursor: pointer">
+                            <td colspan="6" style="text-align:center;color: #ed1717;font-size :20px;">South Packages</td>
+                            {{!-- <td class="arrow" style="text-align: center;"><i class="ri-arrow-down-s-line"></i></td> --}}
+                            <tr class="packages south-packages">
+                                <td>Allepey, Kerala</td>
+                                <td>Cruise through tranquil backwaters, visit historic temples, and taste traditional Kerala cuisine in this scenic coastal town.</td>
+                                <td>3</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.20,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                           <tr class="packages south-packages">
+                                <td>Ooty</td>
+                                <td>Trek through lush tea plantations, visit botanical gardens, and indulge in scenic boating experiences on picturesque lakes in the Nilgiri Hills.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.10,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                             <tr class="packages south-packages">
+                                <td>Coorg,karnataka</td>
+                                <td>Discover misty landscapes, explore Tibetan monasteries, and unwind amidst verdant coffee plantations in the "Scotland of India."</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.15,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                             <tr class="packages south-packages">
+                                <td>Kanyakumari</td>
+                                <td>Witness stunning sunrises, explore iconic landmarks like Vivekananda Rock, and taste fresh seafood by the sea and soak in the spiritual ambiance of this coastal town.</td>
+                                <td>3</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.13,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                             <tr class="packages south-packages">
+                                <td>kodaikanal,Hill station</td>
+                                <td>Hike to scenic viewpoints, picnic by serene lakes, and explore mystical caves in the "Princess of Hill Stations."</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.20,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages south-packages">
+                                <td>Wayand, Kerala</td>
+                                <td>Trek through dense forests, explore ancient caves, and marvel at cascading waterfalls amidst the pristine Western Ghats.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.10,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                        </tr>
+                        <!-- EAst packages -->
+                        <tr class="east-heading" style="cursor: pointer">
+                            <td colspan="6" style="text-align:center;color: #ed1717;font-size :20px;">East Packages</td>
+                            {{!-- <td class="arrow" style="text-align: center;"><i class="ri-arrow-down-s-line"></i></td> --}}
+                            <tr class="packages east-packages">
+                                <td>Gantok,Sikkim</td>
+                                <td>Gangtok, Sikkim's capital, offers stunning views of Mt. Kanchenjunga. It's a popular base for Himalayan trekkers. Enjoy cable car rides for panoramic vistas.</td>
+                                <td>3</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.20,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages east-packages">
+                                <td>Shillong,Meghalaya</td>
+                                <td>Explore the serene Umiam Lake for water activities,stunning landscapes, Elephant Falls , and Don Bosco Centre for Indigenous Cultures for a glimpse into tribal heritage</td>
+                                <td>2</td>
+                                <td>2 Nights 3Days</td>
+                                <td>Rs.15,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages east-packages">
+                                <td>Darjeeling,West Bengal</td>
+                                <td>Explore Mall Road, ride the Darjeeling Himalayan Railway, and visit landmarks like Peace Pagoda.Sunrise views from Tiger Hill and cultural spots.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.15,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages east-packages">
+                                <td>Kaziranga National Park,Assam</td>
+                                <td>Explore biodiversity, including the iconic one-horned rhinos, lush forests andgrasslands. Experience thrilling wildlife safaris and birdwatching adventures.</td>
+                                <td>3</td>
+                                <td>2 Nights 3 Days</td>
+                                <td>Rs.13,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages east-packages">
+                                <td>Kolkata,West Bengal</td>
+                                <td>Discover Howrah Bridge, the Indian Museum, and the Botanical Gardens. City's literary heritage at the Marble Palace and Bengali cuisine at street.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.12,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages east-packages">
+                                <td>Tura,Meghalaya</td>
+                                <td>Explore Tura's tranquil Chandigre Falls and Rongbang Dare Waterfall. Experience Garo villages and savor like bamboo shoot curry and smoked pork.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.13,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                        </tr>
+    
+                        <!-- West packages -->
+    
+                        <tr class="west-heading" style="cursor: pointer">
+                            <td colspan="6" style="text-align:center;color: #ed1717;font-size :20px;">West Packages</td>
+                            {{!-- <td class="arrow" style="text-align: center;"><i class="ri-arrow-down-s-line"></i></td> --}}
+                            <tr class="packages west-packages">
+                                <td>Goa</td>
+                                <td>Embark on the Aguada Cruise in Goa for a journey along the Konkan Coast, passing by the historic Aguada Fort and the vibrant beaches of Calangute and Baga.</td>
+                                <td>3</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.20,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages west-packages">
+                                <td>Jaipur,The pink city</td>
+                                <td>Discover the architectural marvels of Amer Fort and Nahargarh Fort, delve into history at the Jantar Mantar observatory, and stroll through the vibrant markets of Jaipur's Old City.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.15,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages west-packages">
+                                <td>Jaisalmer</td>
+                                <td>Explore the Jaisalmer Fort, embark on a thrilling desert safari amidst the golden dunes, and unwind by the tranquil Gadisar Lake.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.15,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages west-packages">
+                                <td>Mumbai</td>
+                                <td>Explore the Elephanta Caves, take the Marine Drive, and Juhu Beach, Explore Gateway of India and Bollywood Film City, Chhatrapati Shivaji Maharaj Vastu Sangrahalaya.</td>
+                                <td>3</td>
+                                <td>2 Nights 3 Days</td>
+                                <td>Rs.13,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages west-packages">
+                                <td>Udaipur</td>
+                                <td>Majestic City Palace, picturesque Lake Pichola, and ascend to the stunning Sajjangarh Palace,the regal charm and Rajasthan's 'City of Lakes'.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.12,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages west-packages">
+                                <td>Gir,Gujarat</td>
+                                <td>Explore majestic Asiatic Lions, explore the diverse flora and fauna of this sanctuary.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.13,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                        </tr>
+                        <!-- Central  -->
+                        <tr class="central-heading" style="cursor: pointer">
+                            <td colspan="6" style="text-align:center;color: #ed1717;font-size :20px;">Central Packages</td>
+                            {{!-- <td class="arrow" style="text-align: center;"><i class="ri-arrow-down-s-line"></i></td> --}}
+                            <tr class="packages central-packages">
+                                <td>Gwalior</td>
+                                <td>Discover the Gwalior Fort, the opulence of Jai Vilas Palace, and the historical artifacts at Gujari Mahal.</td>
+                                <td>3</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.20,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages central-packages">
+                                <td>Bhopal</td>
+                                <td>Explore the tranquil Upper Lake, beauty of Van Vihar, and delve into Indira Gandhi Rashtriya Manav Sangrahalaya.</td>
+                                <td>2</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.15,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="packages central-packages">
+                                <td>Khajuraho</td>
+                                <td>Discover the UNESCO-listed Khajuraho Group of Monuments,carved Hindu and Jain temples back to the Chandela dynasty</td>
+                               <td>3</td>
+                                <td>3 Nights 4 Days</td>
+                                <td>Rs.20,000</td>
+                                <td class="actions">
+                                   <button class="edit" onclick="editPackage(this)"><i class="ri-edit-2-fill"></i></button>
+                    <button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>
+                                </td>
+                            </tr>
+                           
+                        </tr>
+    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            
+            {{!-- document.addEventListener("DOMContentLoaded", function() {
+            const northArrow = document.querySelector('.north-heading .arrow i');
+            const northPackages = document.querySelectorAll('.north-packages'); // Updated selector
+    
+            const southhArrow = document.querySelector('.south-heading .arrow i');
+            const southPackages = document.querySelectorAll('.south-packages'); 
+    
+            const eastArrow = document.querySelector('.east-heading .arrow i');
+            const eastPackages = document.querySelectorAll('.east-packages'); 
+    
+            const westArrow = document.querySelector('.west-heading .arrow i');
+            const westPackages = document.querySelectorAll('.west-packages'); 
+    
+            const centralArrow = document.querySelector('.central-heading .arrow i');
+            const centralPackages = document.querySelectorAll('.central-packages'); 
+    
+            northArrow.addEventListener('click', function() {
+                northPackages.forEach(row => {
+                    row.classList.toggle('active');
+                });
+            });
+            southhArrow.addEventListener('click', function() {
+                southPackages.forEach(row => {
+                    row.classList.toggle('active');
+                });
+            });
+            eastArrow.addEventListener('click', function() {
+                eastPackages.forEach(row => {
+                    row.classList.toggle('active');
+                });
+            });
+            westArrow.addEventListener('click', function() {
+                westPackages.forEach(row => {
+                    row.classList.toggle('active');
+                });
+            });
+            centralArrow.addEventListener('click', function() {
+                centralPackages.forEach(row => {
+                    row.classList.toggle('active');
+                });
+            });
+        });  --}}
+      //delete and edit 
+      
+      function editPackage(button) {
+        // Get the row corresponding to the clicked edit button
+        var row = button.closest('tr');
+    
+        // Extract package information from the row
+        var name = row.cells[0].textContent;
+        var description = row.cells[1].textContent;
+        var price = row.cells[2].textContent;
+        var duration = row.cells[3].textContent;
+        var contactName = row.cells[4].textContent;
+        var contactNumber = row.cells[5].textContent;
+    
+        // Replace the cell contents with input fields for editing
+        row.cells[0].innerHTML = '<input type="text" value="' + name + '" style="background-color:white; border: 2px solid black; height:50px ;font-family: \'Lexend\', sans-serif;">';
+        row.cells[1].innerHTML = '<input type="text" value="' + description + '" style="background-color:white; border: 2px solid black;height:50px;font-family: \'Lexend\', sans-serif;">';
+        row.cells[2].innerHTML = '<input type="text" value="' + price + '" style="background-color:white; border: 2px solid black;height:50px;font-family: \'Lexend\', sans-serif;">';
+        row.cells[3].innerHTML = '<input type="text" value="' + duration + '" style="background-color:white; border: 2px solid black;height:50px;font-family: \'Lexend\', sans-serif;">';
+        row.cells[4].innerHTML = '<input type="text" value="' + contactName + '" style="background-color:white; border: 2px solid black;height:50px;font-family: \'Lexend\', sans-serif;">';
+        row.cells[5].innerHTML = '<input type="text" value="' + contactNumber + '" style="background-color:white; border: 2px solid black;height:50px;font-family: \'Lexend\', sans-serif;">';
+    
+        // Append save and delete buttons back to the action column
+        row.cells[6].innerHTML = '<button class="save" onclick="saveChanges(this)"><i class="ri-save-fill"></i></button>' +
+                                 '<button class="delete" onclick="deletePackage(this)"><i class="ri-delete-bin-6-fill"></i></button>';
+    }
+    
+    
+    function saveChanges(button) {
+        // Get the row corresponding to the clicked edit button
+        var row = button.closest('tr');
+    
+        // Extract the edited values from input fields
+        var name = row.cells[0].querySelector('input').value;
+        var description = row.cells[1].querySelector('input').value;
+        var price = row.cells[2].querySelector('input').value;
+        var duration = row.cells[3].querySelector('input').value;
+        var contactName = row.cells[4].querySelector('input').value;
+        var contactNumber = row.cells[5].querySelector('input').value;
+    
+        // Update the cell contents with the edited values
+        row.cells[0].textContent = name;
+        row.cells[1].textContent = description;
+        row.cells[2].textContent = price;
+        row.cells[3].textContent = duration;
+        row.cells[4].textContent = contactName;
+        row.cells[5].textContent = contactNumber;
+    
+        // Restore the edit button's onclick attribute to editPackage function
+        button.setAttribute('onclick', 'editPackage(this)');
+        // Change the button's icon back to edit icon
+        button.innerHTML = '<i class="ri-edit-2-fill"></i>';
+    }
+    
+    
+    function deletePackage(button) {
+        var packageRow = button.closest('tr');
+    
+        // If the button is in cancel mode, revert to delete mode
+        // if (button.classList.contains('cancel')) {
+        //     button.innerHTML = '<i class="ri-delete-bin-6-fill"></i>';
+        //     button.classList.remove('cancel');
+        //     button.classList.add('delete');
+    
+           
+        //     var editButton = packageRow.querySelector('.save');
+        //     editButton.innerHTML = '<i class="ri-edit-2-fill"></i>';
+        //     editButton.classList.remove('save');
+        //     editButton.classList.add('edit');
+        //     return;
+        // }
+    
+        // Remove the row from the table
+        packageRow.remove();
+    
+        // You can also send an AJAX request to the server to delete the package permanently
+    }
+    
+        </script>
+    </body>
+    </html> --}}
+    

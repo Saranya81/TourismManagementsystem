@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+        body{
+          font-family: 'Lexend', sans-serif;
+          font-size:16px;
+        }
+        .south-container {
+            position: relative;
+            text-align: center;
+
+        }
+        .main-img {
+            background-size: cover;
+            height: 700px;
+            width: 100%;
+        }
+        .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+        }
+        .cards {
+          margin-top: 5%;
+        }
+        .card {
+          margin-bottom: 5px;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: calc(89.33% - 30px); 
+         margin: 0 60px 20px; 
+         transition: all 0.3s ease;}
+         .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 5px 15px rgba(42, 41, 41, 0.2);
+}
+        .card-img-top {
+          position: relative;
+          width: 100%;
+          height: 200px; 
+          object-fit: cover;
+        }
+        .card-img-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: 100%; /* Add this line to make userImages responsive */
+}
+        .card-text {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 20px;
+          background-color: rgba(0, 0, 0, 0.7);
+          color: white;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          border-radius: 0 0 10px 10px; 
+        }
+        .card:hover .card-text {
+          opacity: 1;
+        }
+        .card-body {
+          padding: 20px;
+        }
+        .card-title {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+        .card-text p {
+          color: #fff;
+        }
+        .card-days,
+        .card-people,
+        .card-price {
+          font-size: 0.9rem;
+          color: #888;
+          margin-bottom: 5px;
+        }
+        .discover {
+          display: block;
+          background-color: rgb(43, 137, 161);
+          color: #fff;
+          border-radius: 5px;
+          text-decoration: none;
+          transition: background-color 0.3s ease;
+          text-align: center;
+          margin: 0 auto; /* Center horizontally */
+          clear: both;
+          padding: 4px 1px; 
+          margin-top: 5%;
+        }
+        .discover:hover {
+          background-color: rgb(23, 107, 131);
+        }
+/*form*/
+/*.customise{
+    text-align: center;
+    z-index:-1;
+}
+
+.customise h2 {
+  margin-top: 5%;
+    margin-bottom: 20px;
+}
+
+.customise-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.customise img {
+    flex: 1; 
+    max-width: 50%; 
+}
+
+.customise-form .customise-content {
+    flex: 1; 
+    padding: 0 20px; 
+}
+
+#Form {
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+#Form label,
+#Form input,
+#Form select,
+#Form textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#Form input,
+#Form select,
+#Form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#Form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#Form button:hover {
+    background-color: #0056b3;
+}*/
+.customise {
+    position: relative; 
+   
+}
+
+.customise h2 {
+    margin-top: 5%;
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+.customise .content {
+  margin-top: 5%;
+  margin-left: 15%;
+    display: flex;
+  /* justify-content:space-around;  */
+    align-items: center;
+    flex-wrap: wrap; 
+   
+    /* Wrap items if they exceed the width */
+}
+
+.customise img {
+    height: 350px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(53, 53, 53, 0.7);
+    transition: transform 0.3s ease; 
+   
+}
+.customise img:hover {
+    transform: scale(1.1); /* Example transformation on hover */
+    box-shadow: 0px 0px 15px rgba(53, 53, 53, 0.9); /* Example box shadow on hover */
+}
+
+.customise p {
+    flex: 1; /* Take remaining space */
+    margin-right: 20px; /* Add some space between the paragraph and the button */
+}
+.para {
+    margin-left: 5%;
+}
+
+
+#Form {
+  display: flex; /* Set the form to use flex layout */
+    justify-content: space-between; /* Space items evenly */
+    align-items: flex-start; /* Align items at the start */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    margin: auto; 
+    position: absolute;
+  
+    left: 50%; 
+    transform: translate(-50%, -80%); /* Center the form both horizontally and vertically */
+    z-index: 999;
+    background-color: hsla(120, 2%, 11%, 0.1);
+    padding: 2.5rem 1.5rem;
+    max-width: 400%;
+    width: 900px; /* Limit the form's width to 80% of its containing element */
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+}
+.Form .half1, .half2 {
+    flex: 1; /* Each half takes up equal space */
+    padding: 0 10px; /* Add some padding */
+    box-sizing: border-box; /* Include padding in element's total width */
+}
+
+
+#Form label,
+#Form input,
+#Form select,
+#Form textarea {
+    display: block;
+    margin-bottom: 10px;
+    color: #100000;
+}
+/* #Form label{
+color:hsl(0, 0%, 100%);
+margin-bottom: 10px;} */
+#Form input,
+#Form select,
+#Form textarea {
+    width: 100%;
+    padding: 4px;
+    border: 0px solid #000000;
+    border-radius: 5px;
+}
+
+#Form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 40%;
+    margin-top: 3%;
+}
+.Form .close-icon{
+  color: #080808;
+  margin-left: 95%;
+}
+#Form button:hover {
+    background-color: #0056b3;
+}
+
+#Form input:not(:placeholder-shown) + label,
+#Form textarea:not(:placeholder-shown) + label {
+    top: -12px;
+    font-size: var(--small-font-size);
+}
+
+#Form input:focus + label,
+#Form textarea:focus + label {
+    top: -12px;
+    font-size: var(--small-font-size);
+    /* Change label color when input is focused */
+}
+.discover:hover {
+    background-color: rgb(78, 187, 217); /* Change background color on hover */
+    /* Add any other hover effects here */
+}
+#arrow {
+  /* position: fixed; */
+  margin-left: 95%;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.3s ease;
+  border-radius: 50%; /* Make the arrow circular */
+  background-color: #4e4c4c; 
+  color: #000000;/* Background color for the arrow */
+  padding: 10px; /* Add some padding around the arrow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */ /* Add a smooth transition */
+}
+
+#arrow.clicked {
+  transform: translateY(-100vh); /* Move the arrow to the top of the page */
+}
+.fixed-button{
+  position: fixed;
+  z-index: 1;
+
+}
+a{
+  color: #4e4c4c;
+}
+/*book now -form*/
+/* .Booknow {
+  position: absolute;
+  transform: translate(-0%, -100%);
+  z-index: 999;
+ left:30%;
+ top:220%;
+  width: 600px;
+  max-width: 900px; 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.Booknow label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.Booknow input[type="text"],
+.Booknow input[type="number"],
+.Booknow input[type="date"],
+.Booknow select,
+.Booknow button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+.Booknow button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Booknow button:hover {
+  background-color: #0056b3;
+}
+
+#close-Booknow {
+  display: block;
+  font-size: 24px;
+  color: #ccc;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#close-Booknow:hover {
+  color: #999;
+}
+
+@media screen and (max-width: 600px) {
+  .Booknow {
+    max-width: 100%;
+  }
+} */.icon-left {
+    font-size: 25px;
+    position: fixed;
+    z-index: 1000;
+    top: 5px;
+    left: 15px;
+    color:rgb(10, 10, 10)
+    cursor: pointer;
+}
+.back-to-home {
+  font-size: 15px;
+    position: fixed;
+    top: 30px; /* Adjust as needed */
+    left: 5px; /* Adjust as needed */
+    display: none; 
+     z-index: 1000;
+     color: #050505;
+    /* Initially hide the text */
+}
+
+.icon-container:hover .back-to-home {
+            display: inline-block; /* Show the text when icon is hovered */
+}
+
+  </style>
+</head>
+<body>
+<section class="southPackage" id="southPackage">
+  <!-- <a href="#" class="fixed-button text-white text-decoration-none px-3 py-2 rounded-1 fixed-button" style="background-color: rgb(43, 137, 161); right: 20px;">Customise Your Tours</a> -->
+ <div class="icon-container">
+            <a href="javascript:history.back()"><i class="ri-arrow-left-line icon-left"></i></a>
+            <span class="back-to-home">back</span>
+        </div>
+
+  <div class="south-container">
+      <img class="main-img" src="userImages/south1.jpg">
+      <div class="title">
+          <h1 style="font-size: 3rem;">Southern Adventure</h1>
+          <p>Dive into Thrilling Expeditions with Southern Tours</p>
+      </div>
+  </div>
+  <h2 style="text-align: center; margin-top: 5%;">Popular Southern Packages</h2>
+  </section>
+ <section class="card-group" id="card-group">
+  <div class="cards">
+      <div class="row row-cols-1 row-cols-md-3 g-5">
+         {{#each packages}}
+          <div class="col">
+            <div class="card">
+              <div class="card-img-top">
+                <img src="{{image_path}}" alt="...">
+                <div class="card-text">
+                  <h6 class="card-title">Package Destinations</h6>
+                  <p>{{description}}</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{package_name}}</h5>
+                  <h7 class="card-days"><i class="ri-history-line"></i>{{days}}</h7><br>
+                  <h7><i class="ri-user-fill"></i>{{people_count}} people</h7><br>
+                  <h7><i class="ri-price-tag-3-fill"></i>Rs.{{price}}</h7><br>
+                  <a href="/bookNow?days={{days}}&amp;people={{people_count}}&amp;price={{price}}&amp;package={{package_name}}" class="discover text-white text-decoration-none px-3 py-2 rounded-1 book-now-button" style="background-color: rgb(43, 137, 161);">Book Now</a>
+                </div>
+            </div>
+          </div>
+          {{/each}}
+         
+
+
+
+
+          <!-- Add other col elements similarly -->
+      </div>
+  </div>
+</section>
+
+
+      <a href="#southPackage" style="margin-top:90%;"><i id="arrow" class="ri-arrow-up-s-line"></i></a>
+        <!-- <i id="arrow" href="#southPackage" class="ri-arrow-up-s-line"></i>
+        <a href="#southPackage">
+          <i id="arrow" class="ri-arrow-up-s-line"></i>
+      </a> -->
+     
+      
+
+  
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.querySelector(".Form");
+    var closeButton = document.querySelector("#close-Form");
+    var loginButton = document.querySelector(".login-button");
+   
+
+    modal.style.display = "none";
+    function openModal() {
+        modal.style.display = "flex";
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Event listener to open the login form
+   loginButton.addEventListener("click", openModal);
+   
+    
+    // Event listener to close the login form
+    closeButton.addEventListener("click", closeModal);
+  });
+
+  // document.addEventListener("DOMContentLoaded", function() {
+  //   var BooknowForm= document.querySelector(".Booknow");
+  //   var closeButton1 = document.querySelector("#close-Booknow");
+  //   var discover = document.querySelector(".discover");//booknow
+  //   BooknowForm.style.display = "none";
+  //   function openBooknow() {
+  //     BooknowForm.style.display = "block";
+  //   }
+
+  //   function closeBooknow() {
+  //     BooknowForm.style.display = "none";
+  //   }
+
+
+
+  //   discover.addEventListener("click", openBooknow);
+  //   closeButton1.addEventListener("click", closeBooknow);
+  // });
+  document.addEventListener("DOMContentLoaded", function() {
+  // Select the Book Now button
+  var bookNowButton = document.querySelector(".book-now-button");
+  var bookNowForm = document.getElementById("Booknow");
+
+  // Add event listener to open the form when the button is clicked
+  bookNowButton.addEventListener("click", function(event) {
+    // Display the form
+    bookNowForm.style.display = "block";
+
+    // Prevent the default anchor behavior
+    event.preventDefault();
+  });
+
+  // Add event listener to close button for the form
+  var closeButton = document.querySelector("#close-Booknow");
+
+  closeButton.addEventListener("click", function(event) {
+    // Close the form
+    bookNowForm.style.display = "none";
+  });
+});
+
+
+
+
+
+//   $(document).ready(function() {
+//     // Initialize datepicker for start date
+//     $("#startDate").datepicker({
+//         dateFormat: 'yy-mm-dd', // Format the date as YYYY-MM-DD
+//         minDate: 0, // Set minimum date to today
+//         onSelect: function(selectedDate) {
+//             // When start date is selected, set minimum date for end date
+//             $("#endDate").datepicker("option", "minDate", selectedDate);
+//         }
+//     });
+
+//     // Initialize datepicker for end date
+//     $("#endDate").datepicker({
+//         dateFormat: 'yy-mm-dd', // Format the date as YYYY-MM-DD
+//         minDate: 0, // Set minimum date to today
+//         onSelect: function(selectedDate) {
+//             // When end date is selected, set maximum date for start date
+//             $("#startDate").datepicker("option", "maxDate", selectedDate);
+//         }
+//     });
+// });
+
+</script>

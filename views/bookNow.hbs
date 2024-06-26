@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now</title>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+
+.Booknow {
+  font-family: 'Lexend', sans-serif;
+  font-size:16px;
+ 
+  width: 600px;
+  max-width: 900px; /* Adjust max-width as needed */
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  /* background-color: hsla(120, 2%, 11%, 0.1); */
+ box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+   
+    /* margin-inline: 1.5rem;
+    padding: 2.5rem 1.5rem;
+    border-radius: 1rem; */
+    backdrop-filter: blur(px);
+}
+
+.Booknow label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.Booknow input[type="text"],
+.Booknow input[type="number"],
+.Booknow input[type="date"],
+.Booknow select,
+.Booknow button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+
+/* Button styling */
+.Booknow button {
+  margin-top:5%;
+  background-color:rgb(43, 137, 161);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Booknow button:hover {
+  background-color: #0056b3;
+}
+
+/* Close icon styling */
+#close-Booknow {
+  display: block;
+  font-size: 24px;
+  color: #ccc;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+#phone {
+  width: 100%; 
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+#close-Booknow:hover {
+  color: #999;
+}
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 999; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5); 
+}
+.modal p{
+  color: #000000;
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 30%; 
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-enquiry{
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background-color:rgb(43, 137, 161);
+  position: fixed;
+  font-size: 18px;
+  top: 30px; 
+  right: 5px; 
+   
+
+}
+
+      .icon-left {
+    font-size: 30px;
+    position: fixed;
+    top: 5px;
+    left: 15px;
+    color: rgb(13, 13, 13);
+    cursor: pointer;
+}
+.back-to-home {
+    position: fixed;
+    top: 30px; 
+    left: 5px; 
+    display: none; 
+    /* Initially hide the text */
+}
+
+.icon-container:hover .back-to-home {
+            display: inline-block; /* Show the text when icon is hovered */
+}
+
+.error{
+  color:red;
+  
+  text-align: center;
+}
+.good{
+    color:rgb(1, 84, 26);
+  
+  text-align: center;}
+/* Media query for responsiveness */
+@media screen and (max-width: 600px) {
+  .Booknow {
+    max-width: 100%;
+  }
+}
+.error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 3px;
+            margin-bottom: 4px;
+        }
+
+    </style>
+</head>
+<body>
+
+   <div class="icon-container">
+            <a href="javascript:history.back()"><i class="ri-arrow-left-line icon-left"></i></a>
+            <span class="back-to-home">back</span>
+        </div>
+        
+    <img src="/userImages/booktrio.jpg" style="height: 500px;width: 100%;">
+    <form action="/auth/bookNow" method="POST" id="Booknow" class="Booknow">
+          {{#if msg}}
+        <p class="{{msg_type}}">{{msg}}</p>
+        {{/if}}
+        {{!-- <i class="ri-close-fill close-icon" id="close-Booknow"></i> --}}
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="packageName">Package Name:</label>
+          <input type="text" id="packageName" name="packageName" required readonly>
+          <label for="days">Duration:</label>
+          <input type="text" id="days" name="days" required readonly>
+          <label for="peopleCount">Number of People:</label>
+          <input type="text" id="peopleCount" name="peopleCount" required readonly>
+          <label for="price">Price:</label>
+          <input type="text" id="price" name="price" required readonly>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate" required>
+           <div id="dateError" class="error-message"></div>
+            <!-- Error message container -->
+            <label for="accommodation">Accommodation:</label>
+            <select id="accommodation" name="accommodation">
+                <option value="resort">Resort</option>
+                <option value="guesthouse">Guesthouse</option>
+                <option value="not_required">Not Required</option> <!-- Modified value -->
+            </select>
+            <label for="travelFacilities">Travel Facilities:</label>
+            <select id="travelFacilities" name="travelFacilities">
+                <option value="bus">Bus</option>
+                <option value="train">Train</option>
+                <option value="flight">Flight</option>
+                <option value="not_required">Not Required</option> <!-- Modified value -->
+            </select>
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <!-- <input type="hidden" id="source" name="source" value="book_now"> -->
+            <button type="submit">Submit</button>
+      </form>
+      {{!-- <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Your response has been successfully submitted. Our team will contact you soon. If you have any queries, please feel free to contact us.</p>
+        </div>
+      </div> --}}
+</body>
+</html>
+<script>
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var form = document.getElementById("Booknow");
+    var startDateInput = document.getElementById("startDate");
+    var endDateInput = document.getElementById("endDate");
+    var dateError = document.getElementById("dateError");
+
+    // Function to extract URL parameter by name
+    function getUrlParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramValue = urlParams.get(name);
+        return paramValue;
+    }
+
+    // Function to populate form fields with package details
+    function populateFormFields() {
+        var packageName = getUrlParameter('package');
+        var days = getUrlParameter('days');
+        var peopleCount = getUrlParameter('people');
+        var price = getUrlParameter('price');
+
+        document.getElementById("packageName").style.fontFamily = "'Lexend', sans-serif";
+        document.getElementById("packageName").value = packageName;
+        document.getElementById("days").style.fontFamily = "'Lexend', sans-serif";
+        document.getElementById("days").value = days;
+        document.getElementById("peopleCount").style.fontFamily = "'Lexend', sans-serif";
+        document.getElementById("peopleCount").value = peopleCount;
+        document.getElementById("price").style.fontFamily = "'Lexend', sans-serif";
+        document.getElementById("price").value = price;
+    }
+
+    populateFormFields();
+
+    function setMinStartDate() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        var todayFormatted = yyyy + '-' + mm + '-' + dd;
+        startDateInput.min = todayFormatted;
+    }
+
+    setMinStartDate();
+
+    startDateInput.addEventListener('change', function() {
+        setMinStartDate();
+        updateEndDate();
+    });
+
+    endDateInput.addEventListener('change', function() {
+        validateDates();
+    });
+
+    function updateEndDate() {
+        var selectedStartDate = new Date(startDateInput.value);
+        var duration = parseInt(document.getElementById("days").value);
+
+        if (!isNaN(duration)) {
+            var endDate = new Date(selectedStartDate);
+            endDate.setDate(selectedStartDate.getDate() + duration);
+
+            var dd = String(endDate.getDate()).padStart(2, '0');
+            var mm = String(endDate.getMonth() + 1).padStart(2, '0');
+            var yyyy = endDate.getFullYear();
+            endDate = yyyy + '-' + mm + '-' + dd;
+
+            endDateInput.value = endDate;
+            endDateInput.min = endDate;
+            dateError.textContent = "";
+        } else {
+            endDateInput.value = '';
+            endDateInput.min = '';
+        }
+    }
+
+    function validateDates() {
+        var startDate = new Date(startDateInput.value);
+        var endDate = new Date(endDateInput.value);
+        var duration = parseInt(document.getElementById("days").value);
+
+        if (!isNaN(duration) && startDate && endDate) {
+            var timeDifference = endDate - startDate;
+            var dayDifference = timeDifference / (1000 * 3600 * 24);
+
+            if (dayDifference !== duration) {
+                dateError.textContent = "Dates do not match the specified duration. Please check the start and end dates.";
+                endDateInput.value = '';
+                endDateInput.min = '';
+            } else {
+                dateError.textContent = "";
+            }
+        }
+    }
+
+    form.addEventListener("submit", function(event) {
+        validateDates();
+        if (dateError.textContent) {
+            event.preventDefault();
+        }
+    });
+
+});
+</script>

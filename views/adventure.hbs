@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure activities</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+        body{
+            font-family: 'Lexend', sans-serif;
+         font-size:16px;
+        }
+        .container{
+            width:1400px;
+            margin-left: 5%;
+          
+        
+        }
+        .adventurepage {
+            padding: 20px;
+        }
+
+        .adventureh1 {
+            text-align: center;
+        }
+
+        .post {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .post .row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .post h5 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .post p {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+            width: 700px;
+        }
+
+        .post img {
+            max-width: 400px;
+            height: 350px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s ease;
+        }
+
+        .to-top:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .post:nth-child(even) .col:first-child,
+        .post:nth-child(odd) .col:last-child {
+            order: 1;
+        }
+
+        .post:nth-child(even) .col:last-child,
+        .post:nth-child(odd) .col:first-child {
+            order: 2;
+        }
+         .icon-left {
+    font-size: 30px;
+    position: fixed;
+    top: 5px;
+    left: 15px;
+    color: rgb(13, 13, 13);
+    cursor: pointer;
+}
+.back-to-home {
+    position: fixed;
+    top: 30px; /* Adjust as needed */
+    left: 5px; /* Adjust as needed */
+    display: none; 
+    /* Initially hide the text */
+}
+
+.icon-container:hover .back-to-home {
+            display: inline-block; /* Show the text when icon is hovered */
+}
+</style>
+
+
+</head>
+<body>
+   <div class="icon-container">
+            <a href="javascript:history.back()"><i class="ri-arrow-left-line icon-left"></i></a>
+            <span class="back-to-home">back</span>
+        </div>
+
+<div class="adventurepage">
+
+    <h1 class="heading adventureh1">Adventure Activities</h1>
+    <div class="container text-center post" id="heli">
+        <div class="row">
+            <div class="col">
+                <h5>Helicopter Tours</h5>
+                <p>Soar above the stunning landscapes of Sri Lanka with our exhilarating helicopter tours. Enjoy panoramic views of pristine beaches, lush greenery, and ancient landmarks as you fly high in the sky.<br><br> Our experienced pilots will guide you through this unforgettable journey, providing insights into the rich history and culture of the island. Whether it's a romantic escapade or a family adventure, our helicopter tours offer a unique perspective of Sri Lanka's beauty.</p>
+            </div>
+            <div class="col">
+                <img src="userImages/activites/helicopter.jpg" alt="img-1">
+            </div>
+        </div>
+    </div>
+    <div class="container text-center post" id="heli">
+        <div class="row">
+            <div class="col">
+                <h5>Forest Safari</h5>
+                <p>Embark on an exhilarating journey through the heart of Sri Lanka's wilderness on our forest safari. Traverse rugged terrain and dense forests as you discover the rich biodiversity of the island. <br><br>Encounter majestic elephants, elusive leopards, and colorful bird species in their natural habitat. Our expert guides will lead you on an unforgettable adventure, sharing their knowledge of the flora and fauna along the way. Whether you're a nature enthusiast or an adventure seeker, our forest safari promises an immersive experience like no other.</p>
+            </div>
+            <div class="col">
+                <img src="userImages/activites/forestsafari.jpeg" alt="img-1">
+            </div>
+        </div>
+    </div> <div class="container text-center post" id="heli">
+        <div class="row">
+            <div class="col">
+                <h5>Hot air baloons</h5>
+                <p>Experience the thrill of floating high above Sri Lanka's breathtaking landscapes with our hot air balloon rides. Drift peacefully over verdant forests, tranquil lakes, and ancient ruins as the world unfolds beneath you.<br><br> Our expert pilots ensure a safe and memorable journey, providing commentary on the scenic wonders below. Whether it's a romantic escapade or a solo adventure, a hot air balloon ride offers an unparalleled perspective of Sri Lanka's natural beauty.</p>
+            </div>
+            <div class="col">
+                <img src="userImages/activites/baloon.jpg" alt="img-1">
+            </div>
+        </div>
+    </div> <div class="container text-center post" id="heli">
+        <div class="row">
+            <div class="col">
+                <h5>Surfing</h5>
+                <p>Ride the waves and feel the adrenaline rush with our thrilling surfing adventures along Sri Lanka's pristine coastline. Whether you're a beginner or an experienced surfer, our expert instructors will guide you to the best breaks and ensure a safe and exhilarating experience. <br><br>Feel the power of the ocean as you carve through the waves and soak up the sun on some of the world's most beautiful beaches. Whether it's catching your first wave or mastering advanced techniques, surfing in Sri Lanka promises an unforgettable adventure.</p>
+            </div>
+            <div class="col">
+                <img src="userImages/activites/surfer-blue-wave.jpg" alt="img-1">
+            </div>
+        </div>
+    </div> <div class="container text-center post" id="heli">
+        <div class="row">
+            <div class="col">
+                <h5>Diving</h5>
+                <p>Explore the mesmerizing underwater world of Sri Lanka with our exhilarating diving excursions. Dive into crystal-clear waters teeming with vibrant coral reefs, exotic marine life, and ancient shipwrecks waiting to be discovered.<br><br> Our certified dive instructors ensure a safe and unforgettable experience for divers of all levels, from beginners to advanced. Immerse yourself in the colorful depths of the Indian Ocean and witness the wonders of Sri Lanka's marine biodiversity firsthand.</p>
+            </div>
+            <div class="col">
+                <img src="userImages/activites/health-bubble-people-camera-motion.jpg" alt="img-1">
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div class="container text-center post" id="heli">
+        <div class="row">
+            <div class="col">
+                <h5>Paragliding</h5>
+                <p>Soar like a bird and experience the thrill of paragliding over Sri Lanka's stunning landscapes. Feel the wind in your hair as you glide effortlessly through the sky, taking in panoramic views of lush greenery, pristine beaches, and majestic mountains. Our experienced pilots ensure a safe and exhilarating flight, allowing you to enjoy the freedom of flight with complete peace of mind.<br>
+                    
+                    <br>Whether it's a solo adventure or a tandem flight with a loved one, paragliding in Sri Lanka promises an unforgettable experience.</p>
+            </div>
+            <div class="col">
+                <img src="userImages/activites/paragliding.webp" alt="img-1">
+            </div>
+        </div>
+    </div>
+
+    <!-- Add other activity sections similarly -->
+
+    <a href="#top" class="to-top active">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+</div>
+
+</body>
+</html>

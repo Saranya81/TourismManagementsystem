@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Package</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 95%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }.error {
+      color: red;
+      text-align: center;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+    }
+  
+     
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Add Package</h2>
+     {{#if msg}}
+      <p class="{{msg_type}}">{{msg}}</p>
+    {{/if}}
+    <form action="/auth/adminAddPackage" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="package_name">Package Name:</label>
+        <input type="text" id="package_name" name="package_name" required>
+      </div>
+      <div class="form-group">
+        <label for="region">Region:</label>
+        <input type="text" id="region" name="region" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="duration">Duration (nights/days):</label>
+        <input type="text" id="duration" name="duration" placeholder="3 nights 4 days" required>
+      </div>
+      <div class="form-group">
+        <label for="people_count">People Count:</label>
+        <input type="number" id="people_count" name="people_count" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+      </div>
+      <div class="form-group">
+        <label for="area_image">Area Image:</label>
+        <input type="file" id="area_image" name="area_image" accept="image/*" required>
+      </div>
+      <button type="submit">Add Package</button>
+    </form>
+  </div>
+  <script>
+     const urlParams = new URLSearchParams(window.location.search);
+    const packageId = urlParams.get('id');
+
+    // Function to fetch package details based on the ID
+    function fetchPackageDetails(id) {
+        fetch(`/auth/packages/${id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Populate form fields with package details
+            document.getElementById('package_name').value = data.package_name;
+            document.getElementById('region').value = data.region;
+            document.getElementById('description').value = data.description;
+            document.getElementById('duration').value = data.days;
+            document.getElementById('people_count').value = data.people_count;
+            document.getElementById('price').value = data.price;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Call the fetchPackageDetails function with the package ID
+    if (packageId) {
+        fetchPackageDetails(packageId);
+    } else {
+        console.error('No package ID found in URL');
+    }
+  </script>
+</body>
+</html>

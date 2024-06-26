@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Bookings</title>
+    <link rel="stylesheet" href="/css/{{cssFile}}">
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 200px;
+            padding: 25px;
+            height: 100%;
+            position: fixed;
+            overflow: auto;
+            transition: transform 0.3s ease;
+            background-color: rgb(230, 230, 230);
+        }
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        .sidebar h2 {
+            color: rgb(9, 9, 9);
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        h1 {
+            color: #070707;
+            text-align: center;
+        }
+        table {
+            margin-top: 5%;
+            width: 100%;
+            border-collapse: collapse;
+            margin-right: 10%;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color:  rgb(43, 152, 179);
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .sidebar-toggle {
+            display: none;
+            border: none;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        @media screen and (max-width: 768px) {
+           
+            .content {
+                margin-top: 20%;
+                margin-left: 0;
+                padding: 10px;
+            }
+            .sidebar-toggle {
+                display: block;
+            }
+            .close-icon {
+                display: block;
+                margin-left: 90%;
+                color: rgb(255, 255, 255);
+                cursor: pointer;
+            }
+            table {
+            
+            width: 50%;
+            border-collapse: collapse;
+            margin-right: 10%;
+        }
+        }
+        
+        
+       
+    </style>
+</head>
+<body>
+    <h1>All Bookings</h1>
+    {{#if bookings.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Package Name</th>
+                <th>Duration (days)</th>
+                <th>People Count</th>
+                <th>Price</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Accommodation</th>
+                <th>Travel Facilities</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each bookings}}
+            <tr>
+                <td>{{this.user_id}}</td>
+                <td>{{this.package_name}}</td>
+                <td>{{this.duration}}</td>
+                <td>{{this.people_count}}</td>
+                <td>{{this.price}}</td>
+                <td>{{formatDate this.start_date}}</td>
+                <td>{{formatDate this.end_date}}</td>
+                <td>{{this.accommodation}}</td>
+                <td>{{this.travel_facilities}}</td>
+                <td>{{this.phone}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p>No bookings found.</p>
+    {{/if}}
+    <script src="/js/{{jsFile}}"></script>
+</body>
+</html>

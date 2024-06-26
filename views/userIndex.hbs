@@ -1,0 +1,570 @@
+<!--Title:Tourism Management System
+  Author :Saranya R
+  Created Date:30-04-2024
+  Last Modified:26-05-2024-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xLfQTvBCi4kJwb3DNEePBStCxJ1ZdLBT7dMkzZpP+Em57M0aXF1ghEERmOn+8NqZb7mGYAR4E2utvMyCGBStOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="/css/style.css"/>
+    <title>Tourism Webpage</title>
+</head>
+<body>
+    <!--navbar header-->
+   {{!-- <h1>Welcome <%= user.name %> !</h1> --}}
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark-bg-transparent fixed-top">
+        <div class="container-fluid">
+          <img src="userImages/icon.png" alt="Icon" style="width: 75px; height: 30px;">
+          <a class="navbar-brand fs-4" href="#">Travel Time</a>
+          <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+ <!--sidebar-->
+          <div class="sidebar offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Travel Time</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <!--sidebar body-->
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3" style="margin-bottom: 20px; ">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page"  href="#home">Home</a>
+                </li>
+              
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="#packages">Packages</a>
+                  </li>
+                  <li class="nav-item mx-2">
+                    <a class="nav-link" href="#services">Services</a>
+                  </li>
+                  <li class="nav-item mx-2">
+                    <a class="nav-link" href="#activities">Adventures</a>
+                  </li>
+                  <li class="nav-item mx-2">
+                    <a class="nav-link" href="#review">Testimonials</a>
+                  </li>
+                  <li class="nav-item mx-2">
+                    <a class="nav-link" href="#contact">contact</a>
+                  </li>
+    
+                
+              </ul>
+              {{#if user}}
+            {{!-- <h1 style="color: black; font-size:20px;margin-top:1.5%;margin-right:10%;">Welcome, {{user.name}}!</h1> --}}
+
+                {{!-- <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%; height: 40px; width: 40px; background-color: transparent; border: none; padding: 0;">
+                  <img src="userImages/profile.png" alt="Profile Image" style="height: 25px; width: 25px; border-radius: 50%; margin-top:2%">
+              </button>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                  
+              </ul>
+          </div> --}}
+        
+   <div class="dropdown-container" style="margin-top: 1%;">
+    
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%; height: 40px; width: 40px; background-color: transparent; border: none; padding: 0; margin-top: 2%; cursor: pointer;">
+            <span id="initial-letter" class="initial-letter" style="display: inline-block; height: 30px; width: 30px; border-radius: 50%; background-color: rgb(86, 170, 190); text-align: center; line-height: 30px;"></span>
+        </button>
+        <ul class="dropdown-menu" style="right: auto; left: -400%;">
+            <li style="text-align: center; color: blue;">{{user.name}}</li>
+            <li style="text-align: center; text-transform: lowercase;">{{user.email}}</li>
+            <br>
+            <li><a class="dropdown-item" href="/myBookings">My Bookings</a></li>
+            <li><a class="dropdown-item" href="/myEnquiries">My Enquiries</a></li>
+
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <i class="ri-arrow-drop-down-line"></i>
+</div>
+
+<script>
+    var userName = "{{user.name}}";
+    
+    document.getElementById("initial-letter").innerText = userName.charAt(0);
+</script>
+       
+    {{else}}
+     <div class="d-flex  justify-content-center align-items-center gap-3 ">
+                <a href="/login" class="login-button text-white text-decoration-none px-3 py-1 rounded-2" style="background-color: rgb(86, 170, 190); margin-right: 0px;">Login</a>
+                <a href="/register" class="login-button text-white text-decoration-none px-3 py-1 rounded-2" style="background-color: rgb(86, 170, 190); margin-right: 0px;">SignUp</a>
+                           
+             </div>
+    {{/if}}
+              
+              {{!-- <a href="/logout">Logout</a> --}}
+             
+             <!-- <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%; height: 40px; width: 40px; background-color: transparent; border: none; padding: 0;">
+                  <img src="userImages/profile.png" alt="Profile Image" style="height: 30px; width: 30px; border-radius: 50%;">
+              </button>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                  
+              </ul>
+          </div> -->
+            </div>
+          </div>
+          
+        </div>
+      </nav>
+
+        
+      
+      <!---login container-->
+      {{!-- <div class="login-form">
+        <div class="login">
+        <form action="/auth/login"class="login__form" id="loginform" autocomplete="off" >
+            <i class="ri-close-fill close-icon"></i>
+             <h1 class="login__title">Login</h1>
+            <div class="login__content">
+                <div class="login__box">
+                   <i class="ri-user-3-line login__icon"></i>
+ 
+               <div class="login__box-input">
+               <input type="text" name="prevent_autofill" id="prevent_autofill" style="display: none;" autocomplete="off">
+
+                <input type="email" required class="login__input" id="login-email" placeholder=" " autocapitalize="none" autocomplete="off" style="background: none; ">
+                <label for="login-email" class="login__label">Email</label>
+                   </div>
+                </div>
+ 
+                <div class="login__box">
+                   <i class="ri-lock-2-line login__icon"></i>
+ 
+                   <div class="login__box-input">
+                      
+                      <input type="password" required class="login__input" id="login-pass" autocomplete="off" placeholder=" " autocomplete="current-password">
+                      <label for="login-pass" class="login__label">Password</label>
+                      <i class="ri-eye-off-line login__eye" id="login-eye"></i>
+                   </div>
+                </div>
+             </div>
+ 
+             <div class="login__check">
+                <div class="login__check-group">
+               <input type="checkbox" class="login__check-input" id="login-check">
+                   <label for="login-check" class="login__check-label">Remember me</label>
+                </div>
+ 
+                <a href="#" class="login__forgot">Forgot Password?</a>
+             </div>
+ 
+             <button type="submit" class="login__button">Login</button>
+             <!-- <button id="login-button" type="button" class="login__button">Login</button> -->
+
+             <p class="login__register">
+                Don't have an account? <a href="/register">Register</a>
+             </p>
+          </form>
+       </div>
+      </div> --}}
+      
+     
+      
+      <!--home-->
+    <section class="home" id="home">
+      <div class="container">
+      <div class="content">
+        <h3>Adventure is worthwhile </h3>
+        <p>Discover new place with us,adventure awaits</p>
+        <a href="#packages" class="discover text-white text-decoration-none px-3 py-2 rounded-1" style="background-color: rgb(43, 137, 161);">Discover more</a>
+        </a>
+      </div>
+      <div class="controls">
+        <span class="vid-btn active" data-src="videos/seashore.mp4"></span>
+        <span class="vid-btn" data-src="videos/waterfall.mp4"></span>
+        <span class="vid-btn" data-src="videos/people.mp4"></span>
+        <span class="vid-btn" data-src="videos/Man.mp4"></span>
+        <span class="vid-btn" data-src="videos/Museum.mp4"></span>
+      </div>
+      <div class="video-container">
+        <video src="videos/seashore.mp4" id="video-slider" loop autoplay muted></video>
+      </div>
+    </div>
+    </section>
+<!--packages-->
+
+
+<section class="packages" id="packages">
+  <div class="container">
+    <h2>Explore the Tours </h2>
+    <p>You'll fall in love with India. <br>
+      Explore India from Kashmir to Kanyakumari.</p>
+    <div class="row">
+      <div class="col-8">
+        <div class="package-item">
+          <img src="userImages/north.jpg"  alt="India Tour Packages">
+          <a href="/northPackages" class="package text-white text-decoration-none px-3 py-1 rounded-0" style="background-color: rgba(118, 123, 124, 0);margin-right: auto; margin-left: auto;font-size: 20px;">North Packages</a>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="package-item">
+          <img src="userImages/vertical.jpeg" alt="International">
+          <a href="/centralPackages" class="package text-white text-decoration-none px-3 py-1 rounded-0" style="background-color:rgba(118, 123, 124, 0); margin-right: 30px;">Central Packages</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="package-item">
+          <img src="userImages/west.jpg" alt="India Tour Packages">
+          <a href="/westPackages" class="package text-white text-decoration-none px-3 py-1 rounded-0" style="background-color: rgba(118, 123, 124, 0); margin-right: 30px;">West Packages</a>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="package-item">
+          <img src="userImages/south1.jpg" alt="International">
+          <a href="/southPackages" class="package text-white text-decoration-none px-3 py-1 rounded-0" style="background-color: rgba(118, 123, 124, 0); margin-right: 30px;">South Packages</a>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="package-item">
+          <img src="userImages/east1.jpg" alt="International">
+          <a href="/eastPackages" class="package text-white text-decoration-none px-3 py-1 rounded-0" style="background-color: rgba(118, 123, 124, 0); margin-right: 30px;">East Packages</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <h2>Discover Our Services</h2>
+  <p>Explore a range of experiences that make your journey unforgettable.<br>
+    Make your travels through this vibrant land truly memorable.</p>
+     
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-auto">
+      <div class="col my-3">
+          <div class="card h-100 d-flex flex-column align-items-center justify-content-center text-center rounded shadow p-3">
+              <img src="userImages/services/hotel.png" class="card-img-top icon-img" alt="..." style="width: 80px; height: 80px;">
+              <div class="card-body">
+                  <h5 class="cards-title mb-3">Accommodation</h5>
+                  <p class="card-text">From luxurious stays to thrilling adventures, experience the best of India.</p>
+              </div>
+          </div>
+      </div>
+    <div class="col my-3">
+        <div class="card h-100 d-flex flex-column align-items-center justify-content-center text-center rounded shadow p-3">
+            <img src="userImages/services/restaurant.png" class="card-img-top icon-img mt-3" alt="..." style="width: 80px; height: 80px;">
+            <div class="card-body">
+                <h5 class="cards-title mb-3">Food</h5>
+                <p class="card-text">Savor the essence of India, one delicious bite at a time</p>
+            </div>
+        </div>
+    </div>
+    <div class="col my-3">
+        <div class="card h-100 d-flex flex-column align-items-center justify-content-center text-center rounded shadow p-3">
+            <img src="userImages/services/travel-and-tourism.png" class="card-img-top icon-img mt-3" alt="..." style="width: 80px; height: 80px;">
+            <div class="card-body">
+                <h5 class="cards-title mb-3">Adventures</h5>
+                <p class="card-text">Explore India's endless adventures and feed your wanderlust</p>
+            </div>
+        </div>
+    </div>
+    <div class="col my-3">
+        <div class="card h-100 d-flex flex-column align-items-center justify-content-center text-center rounded shadow p-3">
+            <img src="userImages/services/family.png" class="card-img-top icon-img mt-3" alt="..." style="width: 80px; height: 80px;">
+            <div class="card-body">
+                <h5 class="cards-title mb-3">Well-being</h5>
+                <p class="card-text">Enjoy a safe and peaceful tour amidst India's beautiful landscapes.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col my-3">
+        <div class="card h-100 d-flex flex-column align-items-center justify-content-center text-center rounded shadow p-3">
+            <img src="userImages/services/plane.png" class="card-img-top icon-img mt-3" alt="..." style="width: 80px; height: 80px;">
+            <div class="card-body">
+                <h5 class="cards-title mb-3">Fastest Travel</h5>
+                <p class="card-text">Travel smoothly across India, explore without delay</p>
+            </div>
+        </div>
+    </div>
+    <div class="col my-3">
+      <div class="card h-100 d-flex flex-column align-items-center justify-content-center text-center rounded shadow p-3">
+          <img src="userImages/guide.png" class="card-img-top icon-img mt-3" alt="..." style="width: 80px; height: 80px;">
+          <div class="card-body">
+              <h5 class="cards-title mb-3">Personalized Guide</h5>
+              <p class="card-text">Tailored journey with our personalized guide,customise your preferences!</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+ </section>
+ 
+ 
+                 
+<section class="activities" id="activities">
+    <h2>Explore Activities</h2>
+    <p style="text-align: center;">Explore a range of experiences that make your journey unforgettable.</p>
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6  context d-flex flex-column align-items-start">
+            <h5 style="color: black; margin-top: 30px;">You can also explore these adventures!!</h5>
+              <p>Discover the thrill of exploring ancient ruins, embarking on epic hikes, or relaxing on pristine beaches. There's something for everyone!</p>
+              <a href="/adventure" class="btn btn-primary mb-4 align-items-center">Know More About Us</a>
+          </div>
+          <div class="col-md-6 caurosel">
+              <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <img src="userImages/activites/paragliding.webp" class="d-block w-100" alt="First slide">
+                          <div class="carousel-caption d-none d-md-block">
+                              <h5>Paragliding</h5>
+                              <p>Soar through the skies and experience breathtaking views from above</p>
+                          </div>
+                      </div>
+                      <div class="carousel-item">
+                          <img src="userImages/activites/baloon.jpg" class="d-block w-100" alt="Second slide">
+                          <div class="carousel-caption d-none d-md-block">
+                              <h5>Hot air baloon</h5>
+                              <p>Float serenely above scenic landscapes and enjoy a bird's-eye view of the world below.</p>
+                          </div>
+                      </div>
+                      <div class="carousel-item">
+                        <img src="userImages/activites/surfer-blue-wave.jpg" class="d-block w-100" alt="Second slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Surfing</h5>
+                            <p>Ride the waves and embrace the exhilaration of the ocean.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="userImages/activites/forestsafari.jpeg" class="d-block w-100" alt="Second slide">
+                      <div class="carousel-caption d-none d-md-block">
+                          <h5>Forest Safari</h5>
+                          <p>Embark on a thrilling journey through lush forests and encounter diverse wildlife.</p>
+                      </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="userImages/activites/health-bubble-people-camera-motion.jpg" class="d-block w-100" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Diving</h5>
+                        <p>Explore vibrant underwater ecosystems and witness the wonders of the deep sea.</p>
+                    </div>
+                </div>
+                      <!-- Add more carousel items here with resized userImages -->
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<section class="review" id="review">
+  <style>
+    .ri-star-fill{
+      color: rgb(255, 208, 0);
+      align-items: center;
+    }
+  </style>
+  <h2>Testimonials</h2>
+  <p style="text-align: center; color: rgb(50, 50, 50); font-size: 20px;color: rgb(96, 96, 96);">Explore a range of experiences that make your journey unforgettable.</p>
+  <div class="cards row row-cols-1 row-cols-md-5 g-4 mx-auto">
+      <div class="col my-3">
+          <div class="card-carousel h-100 rounded shadow" style="position: relative;">
+              <img src="userImages/girl1.jpg" class="card-image" alt="Arun's Experience">
+              <div class="card-title" style="display: flex; justify-content: space-between;">
+                  <h5 class="card-title" style="margin-left: 50%;">Akshaya</h5>
+                  <div style="display: flex;"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill" style="color: white;"></i>
+                  </div>
+              </div>
+              <div class="card-content">
+                  <p class="card-text" style="margin-bottom: 8%; color: #cbcaca;">"Hello from Madurai! Traveling across India was a breeze with their services. From bustling streets to tranquil valleys like Kashmir, it was a seamless journey with no delays, just smooth sailing".<br>
+                  </p>
+              </div>
+          </div>
+      </div>
+      <div class="col my-3">
+          <div class="card-carousel h-100 rounded shadow" style="position: relative;">
+              <img src="userImages/young-adult-enjoying-virtual-date.jpg" class="card-image" alt="Emma's Review">
+              <div class="card-title" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title" style="margin-left: 50%;">Akash</h5>
+                <div style="display: flex;"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill" style="color: white;"></i>
+                </div>
+            </div>
+            
+              <div class="card-content">
+                  <p class="card-text" style="margin-bottom: 8%; color: #cbcaca;">"Hello! from Andhra.The dining experience surpassed all expectations, with each dish bursting with exquisite flavors. Each bite was a delightful journey, leaving a lasting impression on my taste buds. It was truly an impressive culinary adventure."<br>
+                  </p>
+              </div>
+          </div>
+      </div>
+      <div class="col my-3">
+          <div class="card-carousel h-100 rounded shadow" style="position: relative;">
+              <img src="userImages/girl2.jpg" class="card-image" alt="Alex's Adventure">
+              <div class="card-title" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title" style="margin-left: 50%;">Swathi</h5>
+                <div style="display: flex;"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill" style="color: white;"></i>
+                </div>
+            </div>
+              <div class="card-content">
+                  <p class="card-text" style="margin-bottom: 8%; color: #cbcaca;">"Hi! I am from Kerala.From exhilarating mountain treks to thrilling water sports, every moment was filled with excitement. The adventure-filled journey kept us on the edge of our seats, with adrenaline pumping at every turn."<br>
+                  </p>
+              </div>
+          </div>
+      </div>
+      <div class="col my-3">
+          <div class="card-carousel h-100 rounded shadow" style="position: relative;">
+              <img src="userImages/front-view-smiley-woman-with-sari.jpg" class="card-image" alt="Sophie's Serenity">
+              <div class="card-title" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title" style="margin-left: 50%;">Preethi</h5>
+                <div style="display: flex;"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill" style="color: white;"></i>
+                </div>
+            </div>
+              <div class="card-content">
+                  <p class="card-text" style="margin-bottom: 8%; color: #cbcaca;">"Hello! I am from Delhi.Embraced by the tranquility of Bhopal, it was a truly peaceful and rejuvenating experience. Surrounded by breathtaking landscapes, every moment felt serene and serene."<br>
+                  </p>
+              </div>
+          </div>
+      </div>
+      <div class="col my-3">
+          <div class="card-carousel h-100 rounded shadow" style="position: relative;">
+              <img src="userImages/medium-shot-smiley-man-posing.jpg" class="card-image" alt="Raj's Quick Travel">
+              <div class="card-title" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title" style="margin-left: 50%; color: white;">Kalai</h5>
+                <div style="display: flex;"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill" style="color: white;"></i>
+                </div>
+            </div>
+              <div class="card-content">
+                  <p class="card-text" style="margin-bottom: 8%; color: #cbcaca;"> Hi! I am from Tamil Nadu. Absolutely loved my stay with them. The accommodations were top-notch. Will definitely come back!<br>
+                <br>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<section class="contact" id="contact" style="color: white;">
+  <h2>Contact US</h2>
+  <p style="text-align: center; font-size: 20px;">Let's Book your trip by reaching us!</p>
+  <div class="whole-container">
+  <div class="background-image" >
+    <img src="userImages/colombo.jpg" alt="">
+  </div>
+  <div class="content">
+    <div class="container-title">
+      <h3 style="margin-top: 10%; margin-bottom: 20%;">Connect with us..</h3>
+      </div>
+      <div class="about-info">
+    
+        <div class="contact-us" style="justify-content: left;">
+        <ul>
+          <p  style="color: #f2eeee;">Contact:</p>
+          <p  style="color: #f2eeee;";><i class="ri-smartphone-fill"></i> +1234567890</p>
+         <p style="text-transform: lowercase;color: #f2eeee;"><i class="ri-mail-fill"></i>Traveltime@gmail.com</p>
+        </ul>
+      </div>
+      <div class="social-media">
+        <ul>
+          <p  style="color: #f2eeee;">Follow us on social media:</p>
+          <li><a href="#"><i class="ri-facebook-box-fill"></i> Facebook</a></li><br>
+          <li><a href="#"><i class="ri-twitter-fill"></i> Twitter</a></li><br>
+          <li><a href="#"><i class="ri-instagram-line"></i> Instagram</a></li><br>
+          <li><a href="#"><i class="ri-whatsapp-line"></i> Whastapp</a></li>
+        </ul>
+      </div>
+      </div>
+      <div class="contact-button">
+        <p  style="color: #f2eeee;">Book Your Trip Now! Customize your package</p><br>
+        <a href="/enquiry" class="btn-enquiry">Enquiry</a>
+      </div>
+      <div class="footer" style="margin-top:2%; color:white ;">
+        <p  style="color: #f2eeee;">Copyright @ 2024</p>
+      </div>
+   
+  </div>
+</div> 
+</section>
+
+
+
+{{!-- 
+      <form id="Form" class="Form"action="/auth/enquiry" method="POST" style="font-size: 16px;">
+        <!-- <h5 style="color: black; font-size: 20px; text-align: center; margin-left: 4%; margin-bottom: 5%;">To Customize Your Trip! Leave your Queries Regarding Packages</h5> -->
+        <i class="ri-close-fill close-icon" id="close-Form"></i>
+        <div class="half1">
+          <label for="packageName">Package Name:</label>
+          <input type="text" id="packageName" name="packageName">
+          <!-- <select id="packageName" name="packageName">
+            <option value="resort">Resort</option>
+            <option value="guesthouse">Guesthouse</option>
+            <option value="guesthouse" selected>Not required</option>
+        </select> -->
+          <label for="numPeople">Number of People:</label>
+          <input type="number" id="numPeople" name="numPeople">
+          
+          <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate">
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate">
+          <label for="accommodation">Accommodation:</label>
+          <select id="accommodation" name="accommodation">
+              <option value="resort">Resort</option>
+              <option value="guesthouse">Guesthouse</option>
+              <option value="guesthouse" selected>Not required</option>
+          </select>
+          <label for="travelFacilities">Travel Facilities:</label>
+          <select id="travelFacilities" name="travelFacilities">
+              <option value="bus">Bus</option>
+              <option value="train">Train</option>
+              <option value="flight">Flight</option>
+              <option value="car" selected>Not Required</option>
+          </select>
+        </div>
+        <div class="half2">
+         
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" required>
+          <label for="message">Additional Message:</label>
+          <textarea id="message" name="message" style="width: 100%; height: 120px;"></textarea>
+          <button type="submit">Submit</button>
+          </div>
+          
+      </form> 
+      {{!-- <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Your response has been successfully submitted. Our team will contact you soon. If you have any queries, please feel free to contact us.</p>
+        </div>
+      </div> --}}
+      
+
+
+
+
+    
+    
+    <script src="/js/script.js"></script>
+</body>
+</html>
+
+
